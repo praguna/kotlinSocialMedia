@@ -17,20 +17,10 @@ const RefreshHome = () => {
 
 const App = () => {  
 
-
-  useEffect(() => {
-    const user = AuthService.getCurrentUser();
-    if (user) {
-      setCurrentUser(user);
-    }
-  }, []);
-
-  const [currentUser, setCurrentUser] = useState(undefined);
-
   return (
     <div>
         <Routes>
-          <Route path="/" element= { <RefreshHome props = {{ user : currentUser}} /> } />
+          <Route path="/" element= { <RefreshHome /> } />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home/>} />
