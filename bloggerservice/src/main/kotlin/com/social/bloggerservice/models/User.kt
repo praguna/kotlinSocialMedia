@@ -2,6 +2,7 @@ package com.social.bloggerservice.models
 
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id
+import org.springframework.data.annotation.Immutable
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
 import javax.validation.constraints.Email
@@ -25,4 +26,6 @@ data class User(
     val modifiedDate: LocalDateTime = LocalDateTime.now(),
     val description : String? = null,
     val imgAvatar : String? = null,
+    val active: Boolean = true,
+    val roles: List<String> = arrayListOf()
 )

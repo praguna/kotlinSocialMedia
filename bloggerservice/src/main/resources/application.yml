@@ -1,6 +1,6 @@
 spring.data:
-  mongodb.uri: mongodb+srv://praguna:praguna@cluster0.stuj5.mongodb.net/blogger?retryWrites=true&w=majority
+  mongodb.uri: mongodb+srv://praguna:praguna1@cluster0.stuj5.mongodb.net/blogger?retryWrites=true&w=majority
 
 blogger.app:
-  jwtSecret: blogger_secret_key
-  jwtExpirationS: 3600s
+  jwtSecret: blogger_secret_key_spring_reactive_jwt_sample_ublic
+  jwtExpirationMS: 3600000
