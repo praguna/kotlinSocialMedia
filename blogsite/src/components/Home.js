@@ -12,6 +12,7 @@ const Home = () => {
   };
 
   const currentUser = AuthService.getCurrentUser();
+  console.log(currentUser)
 
   return (
     <div>
@@ -32,7 +33,7 @@ const Home = () => {
       <div className="container">
         <header className="jumbotron">
           <h3>
-            <strong>{currentUser.username}</strong> Profile
+            <strong>{currentUser.user.username}</strong> 's Profile
           </h3>
         </header>
         <p>
@@ -40,10 +41,10 @@ const Home = () => {
           {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
         </p>
         <p>
-          <strong>Id:</strong> {currentUser.id}
+          <strong>Id:</strong> {currentUser.user.id.id}
         </p>
         <p>
-          <strong>Email:</strong> {currentUser.email}
+          <strong>Email:</strong> {currentUser.user.emailId}
         </p>
       </div>
     </div>
