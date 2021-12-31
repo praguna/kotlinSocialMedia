@@ -65,7 +65,7 @@ class UserAuthController(
             ResponseEntity<SignInResponse>(tokenBody, httpHeaders, HttpStatus.OK)
         }catch (e : Exception){
             log.error(e.message)
-            ResponseEntity.internalServerError().body(SignInResponse(null, null,  "something went wrong !!!"))
+            ResponseEntity.internalServerError().body(SignInResponse(null, null,  "${e.message}"))
         }
     }
 
