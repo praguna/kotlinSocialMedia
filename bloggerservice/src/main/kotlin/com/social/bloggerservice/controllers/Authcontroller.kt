@@ -61,4 +61,9 @@ class AuthController(
                 "roles" to AuthorityUtils.authorityListToSet(principal.authorities)
             ))
     }
+
+    @GetMapping("/ping")
+    suspend fun pingPong() : String{
+        return "pong"
+    }
 }

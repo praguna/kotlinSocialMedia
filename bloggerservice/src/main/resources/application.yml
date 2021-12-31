@@ -4,3 +4,6 @@ spring.data:
 blogger.app:
   jwtSecret: blogger_secret_key_spring_reactive_jwt_sample_ublic
   jwtExpirationMS: 3600000
+
+server:
+  port=${port:8080}:
