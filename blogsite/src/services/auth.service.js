@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/auth/";
+const API_URL = "http://bloggerservice-dev.us-west-2.elasticbeanstalk.com/api/auth/";
 
 // const sampleData = {
 //   username: "NITISH",
