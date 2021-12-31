@@ -15,7 +15,7 @@ data class User(
     val id : ObjectId  = ObjectId.get(),
     @NotBlank
     @Size(max = 20)
-    val password : String,
+    var password : String,
     @NotBlank
     @Size(max = 20)
     val username : String,
