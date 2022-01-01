@@ -55,7 +55,7 @@ class PostController(
 
     @GetMapping("post/myposts/{username}/{pageNum}")
     suspend fun fetchMyPosts(@PathVariable username: String, @PathVariable pageNum: Int): ResponseEntity<List<PostResponse>>{
-        log.info("myposts :: $username")
+        log.info("myposts :: $username $pageNum")
         return ResponseEntity.ok(userPostService.paginatedFetchPostUser(username, pageNum))
     }
 
@@ -74,7 +74,7 @@ class PostController(
 
     @GetMapping("post/feed/{username}/{pageNum}")
     suspend fun fetchFeedPosts(@PathVariable username: String,  @PathVariable pageNum: Int): ResponseEntity<List<PostResponse>>{
-        log.info("myposts :: $username")
+        log.info("myposts :: $username $pageNum")
         return ResponseEntity.ok(userPostService.paginatedFetchPostNonUser(username, pageNum))
     }
 }
