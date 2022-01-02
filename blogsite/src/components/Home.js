@@ -3,9 +3,8 @@ import AuthService from "../services/auth.service";
 import { useNavigate, useParams } from "react-router-dom"
 import ProfileMenu from "./ProfileMenu";
 import HomeNav from "./HomeNav";
-import { Header, Label } from 'semantic-ui-react'
+import { Button, Header, Label } from 'semantic-ui-react'
 import { myPosts, feedPosts, myPostsCount, feedPostsCount } from '../services/post.service'
-import {InfiniteScroll} from '../hooks/useFetch'
 
 
 
@@ -43,6 +42,7 @@ const Home = () => {
   const countFunc = data.post !== "post" ? myPostsCount : feedPostsCount
   const [err, setErr] = useState("")
   const [pageNum, setPageNum] = useState(0)
+  const [loading, setLoading] = useState(false)
   const logOut = () => {
     AuthService.logout();
     navigate("/", { replace: true })
@@ -70,10 +70,12 @@ const Home = () => {
 
 
   useEffect(() => {
+    console.log(pageNum)
     fetchFunc(currentUser.user.username, 0)
       .then((response) => {
         setErr("")
         setCardInfo(response.data)
+        setPageNum(_page => _page + 1)
       }).catch(err => {
         console.log(err)
         setErr("error loading data")
@@ -91,6 +93,21 @@ const Home = () => {
         setErr("error loading data")
       })
   })
+
+  const handleLoadMore = ()=>{
+    setLoading(true)
+    fetchFunc(currentUser.user.username, pageNum)
+      .then((response) => {
+        setLoading(false)
+        setErr("")
+        setCardInfo(cardInfo.concat(response.data))
+        setPageNum(_page => _page + 1)
+      }).catch(err => {
+        console.log(err)
+        setLoading(false)
+        setErr("error loading data")
+      })
+  }
 
   if (currentUser === null) {
     navigate("/", { replace: true })
@@ -116,7 +133,6 @@ const Home = () => {
                  return <CardExampleLinkCard userPost={element} key = {i}/>
                })
              }
-              {/* <InfiniteScroll/> */}
               {count == 0 && (<h3 className="text-center red">Looks like there are no posts <span hidden={param === "post"}><a href="/post" >click here </a>to create</span></h3>)}
               {err && (
                 <div className="form-group">
@@ -128,6 +144,8 @@ const Home = () => {
                 </div>
               )}
             </div>
+            {loading && (<h3>loading...</h3>)  }
+            {(count && <Button primary hidden = {count - cardInfo.length <= 0 } onClick={handleLoadMore}>Load More</Button>)}
           </div>
         </main>
       </div>
