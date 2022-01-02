@@ -53,22 +53,6 @@ const Home = () => {
   console.log(currentUser)
 
 
-  // const fetchData = () => {
-  //   console.log("I am here")
-  //   fetchFunc(currentUser.user.username, pageNum)
-  //     .then((response) => {
-  //       setErr("")
-  //       setCardInfo(cardInfo.concat(response.data))
-  //       setPageNum(pageNum + 1)
-
-  //     }).catch(err => {
-  //       console.log(err)
-  //       setErr("error loading data")
-  //     })
-
-  // }
-
-
   useEffect(() => {
     console.log(pageNum)
     fetchFunc(currentUser.user.username, 0)
@@ -133,7 +117,7 @@ const Home = () => {
                  return <CardExampleLinkCard userPost={element} key = {i}/>
                })
              }
-              {count == 0 && (<h3 className="text-center red">Looks like there are no posts <span hidden={param === "post"}><a href="/post" >click here </a>to create</span></h3>)}
+              {!err && count == 0 && (<h3 className="text-center red">Looks like there are no posts <span hidden={param === "post"}><a href="/post" >click here </a>to create</span></h3>)}
               {err && (
                 <div className="form-group">
                   <div
@@ -144,8 +128,8 @@ const Home = () => {
                 </div>
               )}
             </div>
-            {loading && (<h3>loading...</h3>)  }
-            {(count && <Button primary hidden = {count - cardInfo.length <= 0 } onClick={handleLoadMore}>Load More</Button>)}
+            {!err && loading && (<h3>loading...</h3>)  }
+            {(!err && count && <Button primary hidden = {count - cardInfo.length <= 0 } onClick={handleLoadMore}>Load More</Button>)}
           </div>
         </main>
       </div>
