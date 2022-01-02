@@ -129,7 +129,7 @@ const Home = () => {
               )}
             </div>
             {!err && loading && (<h3>loading...</h3>)  }
-            {(!err && count && <Button primary hidden = {count - cardInfo.length <= 0 } onClick={handleLoadMore}>Load More</Button>)}
+            {!err && count > 0 && (<Button primary hidden = {count - cardInfo.length <= 0 } onClick={handleLoadMore}>Load More</Button>)}
           </div>
         </main>
       </div>
